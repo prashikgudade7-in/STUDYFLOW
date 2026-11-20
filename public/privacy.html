@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Draft privacy notice for StudyFlow.">
+  <title>Privacy notice — StudyFlow</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="legal-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="legal-header">
+    <a class="legal-brand" href="/">StudyFlow</a>
+    <a href="/">Back to StudyFlow</a>
+  </header>
+  <main class="legal-content" id="main-content">
+    <p class="eyebrow">PRIVACY</p>
+    <h1>Privacy notice</h1>
+    <p class="legal-meta">Technical review date: 19 November 2026</p>
+    <p class="legal-status"><strong>Draft — not ready for public launch.</strong> The service operator, contact details, retention decisions, child-user safeguards, and applicable legal terms have not been supplied or verified. The owner must complete these items and obtain qualified legal review before publishing this notice.</p>
+
+    <h2>1. Who operates StudyFlow?</h2>
+    <p>The repository does not identify the legal person or organization operating StudyFlow. Its registered or service address, privacy contact, and any required grievance contact are also not configured. This notice is not complete until the owner supplies and publishes those details.</p>
+
+    <h2>2. Information the application handles</h2>
+    <ul>
+      <li><strong>Account information:</strong> name, username, email address, class, school board, and password. The application stores a salted PBKDF2 password hash rather than the password itself. The profile may also include school, photo, and timezone.</li>
+      <li><strong>Study information:</strong> tasks, schedules, events, study sessions, goals, practice progress, saved words, and other user-created records. Some record fields accept free-form text.</li>
+      <li><strong>Challenge information:</strong> server-generated attempts, selected answers, score, elapsed time, class grouping, and leaderboard history.</li>
+      <li><strong>Sign-in and security information:</strong> a hashed session token and short-lived hashed login identifiers used for account-level rate limiting. The application uses request IP information for in-process rate limiting; source code does not show that rate-limit IP keys are written to the StudyFlow database.</li>
+      <li><strong>Notifications and choices:</strong> in-app notification content and read/important state, notification category preferences, and the version/time of recorded core-service acceptance. New notification preference rows default off.</li>
+      <li><strong>Files and AI requests:</strong> the server temporarily processes PDF data to extract selectable text. Student-data AI requests are blocked while provider review is pending. A provider connection test sends only a fixed, non-student test prompt and the credential needed for that test. The browser stores selected AI provider/model/endpoint preferences, not the API key.</li>
+    </ul>
+
+    <h2>3. How information is used</h2>
+    <p>StudyFlow uses account and study information to authenticate users, provide the study planner and practice features, save progress, calculate challenge results, and show authenticated leaderboards. It uses security information to maintain sessions and limit abusive requests. Student prompts, images and documents are not sent to AI providers because all providers remain pending. A separate connection test sends the user's provider credential and a fixed, non-student prompt to that provider.</p>
+
+    <h2>4. AI providers and other third parties</h2>
+    <p>The application offers OpenAI, Google Gemini, Anthropic Claude, Azure OpenAI, Perplexity, DeepSeek, xAI, Mistral, Cohere, and Fireworks for Meta Llama as configurable integrations. None is approved for student-data processing. The server blocks student-data requests until text, image, and document categories each have a recorded approval, verification date, and evidence reference. A valid API key does not constitute approval, and the application does not switch to a fallback provider. The optional connection test is separate: it rejects user-supplied prompts, images, and documents and sends only a fixed non-student test prompt. No provider retention, training, review, or data-region practices are represented as verified. See the [AI provider approval register](../docs/AI_PROVIDER_APPROVAL_REGISTER.md).</p>
+    <p>DM Sans and Manrope are now served from the StudyFlow site, with their SIL Open Font License included in the repository. No analytics, advertising SDK, tracking pixel, or nonessential cookie was identified in the reviewed application source. Hosting-provider processing and access logs depend on the deployment and are not configured by this repository.</p>
+
+    <h2>5. Storage and retention</h2>
+    <ul>
+      <li>SQLite stores account data, study records, sessions, challenge attempts and results, notifications, preferences, and consent records. The application has no general automatic retention schedule for accounts, study records, completed challenge history, or notifications.</li>
+      <li>Server-side sessions expire after 14 days. Account creation uses a persistent 14-day browser cookie. On later sign-ins, unchecking “Keep me signed in” requests a browser-session cookie; the corresponding server session still expires no later than 14 days.</li>
+      <li>Login-rate-limit identifier hashes are short-lived (15 minutes) and stale rows are cleaned up periodically.</li>
+      <li>Challenge question sets and answer keys are stored temporarily for scoring and removed by hourly cleanup after attempt expiry. A minimal daily anti-replay marker is retained through the current IST date and removed by cleanup after the date changes.</li>
+      <li>PDF input is processed in memory by the extraction endpoint rather than intentionally saved as a file. Student content is not forwarded to an AI provider while provider approvals are pending.</li>
+      <li>The application does not intentionally save AI API keys, prompts, or submitted images to its SQLite database. Connection tests can transmit the selected API key and a fixed non-student prompt to the selected provider. Deployment backups and infrastructure logs require separate owner configuration and review.</li>
+    </ul>
+
+    <h2>6. Cookies and browser storage</h2>
+    <p>The first-party <code>studyflow_session</code> cookie is used to authenticate a signed-in session. It is HttpOnly, SameSite=Lax, and Secure when served over HTTPS. See the <a href="/cookies.html">cookie notice</a> for the current inventory.</p>
+    <p>The browser stores a non-cookie preference named <code>studyflow_ai_pref</code> in localStorage. It contains the chosen provider, model, and optional Azure endpoint; it does not contain the API key. It remains until cleared in the browser.</p>
+
+    <h2>7. Access, correction, export, and deletion</h2>
+    <p>Signed-in users can download a JSON export containing their profile, study records, challenge history, notifications, notification preferences, recorded core-service consent and browser AI-provider preferences. Password hashes, session tokens and answer keys are excluded. Settings also allows users to clear their study records or challenge history without deleting the account. To prevent a same-day challenge replay, clearing challenge history retains a minimal current-day claim until the IST date changes and cleanup runs. Account deletion requires the current password and removes the account's active SQLite data, including its consent record. Application deletion does not remove deployment backups, platform logs, or information already sent to a third party. The operator must publish a functioning privacy contact and define backup deletion and request-handling procedures before launch.</p>
+    <p>New accounts must affirmatively accept the stated core-service data-use purpose. Optional notification preferences are off for new preference rows. No AI-content consent is requested while providers and their terms/regions/retention remain unverified; the application blocks student-content AI requests.</p>
+
+    <h2>8. Children and student information</h2>
+    <p>The owner has specified an intended minimum age of 18, with users under 18 eligible only through parent/guardian consent and controls. The current build does not implement age verification or a guardian consent workflow, so it does not yet enforce this policy. Do not treat this draft or the current registration form as an age or guardian-control mechanism; these controls and legal review are required before enrolling users under 18.</p>
+
+    <h2>9. Security and changes</h2>
+    <p>The application uses password hashing, hashed session tokens, authenticated routes, rate limits, and HTTPS-aware cookie settings. These are technical controls, not a guarantee of security or legal compliance. No claim is made that data is encrypted at rest; storage, backups, access controls, and incident handling depend on deployment configuration.</p>
+    <p>Before this notice is published as an operational policy, the owner must add the operator identity and contact details, define retention and backup deletion, verify provider approvals and transfers, implement age/guardian controls, select hosting and operational practices, and obtain legal review. Official current DPDP commencement texts were not retrievable during the technical review; counsel must verify the rules and effective provisions before launch. This draft must be updated if the service or its data practices change.</p>
+
+    <h2>10. Contact</h2>
+    <p>No privacy contact or operator address is configured in the project. The owner must supply a monitored contact channel and any legally required details before publication.</p>
+  </main>
+  <footer class="legal-footer" aria-label="Legal information">
+    <a href="/">StudyFlow</a><a href="/terms.html">Terms</a><a href="/cookies.html">Cookies</a>
+  </footer>
+</body>
+</html>

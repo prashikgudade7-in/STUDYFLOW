@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Draft cookie and browser-storage notice for StudyFlow.">
+  <title>Cookies and browser storage — StudyFlow</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="legal-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="legal-header">
+    <a class="legal-brand" href="/">StudyFlow</a>
+    <a href="/">Back to StudyFlow</a>
+  </header>
+  <main class="legal-content" id="main-content">
+    <p class="eyebrow">COOKIES</p>
+    <h1>Cookies and browser storage</h1>
+    <p class="legal-meta">Technical review date: 19 November 2026</p>
+    <p class="legal-status"><strong>Draft — operator and legal review required.</strong> This inventory reflects the application source reviewed on this date. Hosting infrastructure and third-party provider behavior may add processing that is not visible in this repository.</p>
+
+    <h2>1. Cookies used by StudyFlow</h2>
+    <div class="legal-table-wrap">
+      <table class="legal-table">
+        <caption>First-party cookie inventory</caption>
+        <thead><tr><th scope="col">Name</th><th scope="col">Purpose</th><th scope="col">Duration</th><th scope="col">Controls</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><code>studyflow_session</code></th><td>Required to authenticate a signed-in StudyFlow session.</td><td>Account creation and sign-ins with “Keep me signed in” checked use a persistent cookie of up to 14 days. Unchecked sign-ins use a browser-session cookie. The server-side session expires within 14 days in every case.</td><td>HttpOnly, SameSite=Lax, Secure on HTTPS. Clear it through browser settings or sign out; blocking it prevents sign-in features from working.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>2. Other browser storage</h2>
+    <p>StudyFlow uses localStorage key <code>studyflow_ai_pref</code> to remember the selected AI provider, model, and optional Azure endpoint. It does not store the API key. This value remains until cleared by the user in browser settings or site-data controls. It is browser storage, not a cookie.</p>
+
+    <h2>3. Analytics and optional tracking</h2>
+    <p>No analytics SDK, advertising SDK, tracking pixel, or optional tracking cookie was identified in the reviewed application source. No cookie-consent manager is present. A consent banner has not been added because this review found no optional tracking cookies to control; this is not a legal determination that consent is unnecessary for every deployment or data use. Reassess before adding analytics, advertising, or other nonessential tracking.</p>
+
+    <h2>4. Fonts</h2>
+    <p>DM Sans and Manrope are served from the StudyFlow site. Their SIL Open Font License is included in the project. The current frontend does not make a Google Fonts request.</p>
+
+    <h2>5. Changing your choices</h2>
+    <p>You may clear StudyFlow cookies and localStorage through your browser's site-data settings. Signing out invalidates the current server session and clears its cookie. Clearing localStorage removes the remembered AI provider preferences. Blocking the required session cookie prevents authenticated features from working.</p>
+
+    <h2>6. Notice status</h2>
+    <p>The operator identity and contact details are not present in the repository. The owner must supply them, verify hosting and provider behavior, and obtain legal review before publishing this notice as a final policy. See the <a href="/privacy.html">draft Privacy notice</a> and <a href="/terms.html">draft Terms</a>.</p>
+  </main>
+  <footer class="legal-footer" aria-label="Legal information">
+    <a href="/">StudyFlow</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a>
+  </footer>
+</body>
+</html>

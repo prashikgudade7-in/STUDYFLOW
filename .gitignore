@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# SQLite database and runtime data
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Backups and temporary files
+*.backup
+*.bak
+server.backup.js
+*.tmp
+*.swp
+
+# Logs and generated output
+logs/
+*.log
+coverage/
+dist/
+build/
+
+# Uploads
+uploads/
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/*
+!.vscode/extensions.json

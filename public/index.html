@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#6d43dc" />
+  <meta name="description" content="StudyFlow — plan smarter, learn consistently, and track your progress." />
+  <title>StudyFlow — Your study companion</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="toast-region" aria-live="polite"></div>
+  <section id="auth-screen" class="auth-screen">
+    <div class="auth-art">
+      <div class="brand brand-light"><span class="brand-mark">✦</span><span>StudyFlow</span></div>
+      <div class="auth-art-content">
+        <span class="eyebrow">YOUR PERSONAL STUDY SPACE</span>
+        <h1>Make every<br><span>study session</span><br>count.</h1>
+        <p>Plan your day, build better habits and see your progress — all in one place.</p>
+        <div class="art-stats"><div><b>01</b><small>Plan smarter</small></div><div><b>02</b><small>Learn better</small></div><div><b>03</b><small>Grow daily</small></div></div>
+      </div>
+      <div class="floating-note note-one">✦ A little progress every day</div>
+      <div class="floating-note note-two">🔥 Keep your streak going</div>
+      <div class="art-orb orb-one"></div><div class="art-orb orb-two"></div>
+    </div>
+    <div class="auth-panel">
+      <div class="auth-mobile-brand brand"><span class="brand-mark">✦</span><span>StudyFlow</span></div>
+      <div class="auth-box">
+        <div class="auth-heading"><span class="eyebrow" id="auth-eyebrow">WELCOME BACK</span><h2 id="auth-title">Sign in to StudyFlow</h2><p id="auth-subtitle">Your next study win starts here.</p></div>
+        <form id="login-form" class="auth-form">
+          <label>Email or username<input name="identifier" autocomplete="username" placeholder="Enter email or username" required></label>
+          <label>Password<div class="password-wrap"><input name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required minlength="8"><button type="button" class="password-toggle" aria-label="Show password" title="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5 9.5-5 9.5 5 9.5 5-3.5 5-9.5 5-9.5-5-9.5-5Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg></button></div></label>
+          <div class="form-row"><label class="check-label"><input type="checkbox" name="remember_me" checked> <span>Keep me signed in</span></label><a href="#" id="forgot-link">Forgot password?</a></div>
+          <button class="btn btn-primary btn-full" type="submit">Sign in <span>→</span></button>
+        </form>
+        <form id="signup-form" class="auth-form hidden">
+          <div class="two-fields"><label>Full name<input name="name" placeholder="Your name" required></label><label>Username<input name="username" placeholder="e.g. study_star" minlength="3" required></label></div>
+          <label>Email address<input name="email" type="email" placeholder="you@example.com" required></label>
+          <div class="two-fields"><label>Class<select name="standard" required><option value="">Select class</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label><label>Board<select name="board" required><option value="">Select board</option><option>CBSE</option><option>ICSE</option><option>Maharashtra State Board</option><option>Other State Board</option><option>Other</option></select></label></div>
+          <div class="two-fields"><label>Password<div class="password-wrap"><input name="password" type="password" minlength="8" placeholder="At least 8 characters" required><button type="button" class="password-toggle" aria-label="Show password" title="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5 9.5-5 9.5 5 9.5 5-3.5 5-9.5 5-9.5-5-9.5-5Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg></button></div></label><label>Confirm password<div class="password-wrap"><input name="confirm_password" type="password" minlength="8" placeholder="Re-enter password" required><button type="button" class="password-toggle" aria-label="Show password" title="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5 9.5-5 9.5 5 9.5 5-3.5 5-9.5 5-9.5-5-9.5-5Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg></button></div></label></div>
+          <label class="check-label consent-check"><input type="checkbox" name="privacy_notice_acknowledged" required><span>I agree to StudyFlow using the account and study information I provide to create my account and deliver the features I request, as described in the <a href="/privacy.html" target="_blank" rel="noopener">Privacy notice</a>. This is required for the core service; AI processing is not included.</span></label>
+          <button class="btn btn-primary btn-full" type="submit">Create my account <span>→</span></button>
+          <p class="form-note">The Privacy notice and Terms are drafts pending operator and legal review. Do not enter sensitive personal information in this build. <a href="/terms.html">Terms</a></p>
+        </form>
+        <p class="auth-switch"><span id="auth-switch-text">New to StudyFlow?</span> <button id="auth-switch" type="button">Create an account</button></p>
+        <p class="auth-error" id="auth-error" role="alert" aria-live="assertive"></p>
+      </div>
+      <div class="auth-footer">Built for better learning habits <span>✦</span><nav aria-label="Legal information"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/cookies.html">Cookies</a></nav></div>
+    </div>
+  </section>
+
+  <div id="app-shell" class="app-shell hidden">
+    <aside class="sidebar">
+      <a class="brand" href="#home" data-nav="home" data-view="home"><span class="brand-mark">✦</span><span>StudyFlow</span></a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav">
+        <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span>Dashboard</button>
+        <button class="nav-item" data-view="timetable"><span class="nav-icon">▦</span>Timetable</button>
+        <button class="nav-item" data-view="tasks"><span class="nav-icon">☑</span>My tasks <span class="nav-count" id="side-task-count">0</span></button>
+        <button class="nav-item" data-view="calendar"><span class="nav-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="2.5"></rect><path d="M7.5 3.5v3M16.5 3.5v3M3.5 9.5h17M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01"></path></svg></span>Calendar</button>
+        <button class="nav-item" data-view="stats"><span class="nav-icon">▥</span>My progress</button>
+      </nav>
+      <div class="side-label side-label-spaced">LEARNING SPACE</div>
+      <nav class="side-nav">
+        <button class="nav-item" data-view="revision"><span class="nav-icon">✧</span>Quick revision</button>
+        <button class="nav-item" data-view="english"><span class="nav-icon">Aa</span>English practice</button>
+        <button class="nav-item" data-view="maths"><span class="nav-icon">∑</span>Math practice</button>
+        <button class="nav-item" data-view="challenge"><span class="nav-icon">⚡</span>Daily challenge</button>
+        <button class="nav-item" data-view="leaderboard"><span class="nav-icon">♛</span>Leaderboard</button>
+        <button class="nav-item" data-view="assistant"><span class="nav-icon">✦</span>AI & dictionary</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-tip"><span class="tip-spark">✦</span><b>Small steps add up.</b><p>Show up for your goals today. Your future self will thank you.</p></div>
+        <button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span>Settings</button>
+        <button class="profile-mini" data-view="profile"><span class="avatar" id="mini-avatar">S</span><span><b id="mini-name">Student</b><small id="mini-class">Class 11 · Board</small></span><span class="mini-more">•••</span></button>
+      </div>
+    </aside>
+
+    <main class="main-area" id="main-content" tabindex="-1">
+      <header class="topbar">
+        <div class="mobile-brand brand"><span class="brand-mark">✦</span><span>StudyFlow</span></div>
+        <div class="breadcrumb"><span>Workspace</span><b>/</b><strong id="page-breadcrumb">Dashboard</strong></div>
+        <div class="top-actions"><button class="icon-btn" id="header-focus" title="Start focus session" aria-label="Focus session"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></button><button class="icon-btn notification-btn" id="notifications-btn" title="Notifications" aria-label="Notifications" aria-haspopup="dialog" aria-controls="notifications-drawer" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg><span class="notification-count hidden" id="notification-count" aria-hidden="true">0</span></button><span class="sr-only" id="notification-announcement" aria-live="polite" aria-atomic="true"></span><button class="top-avatar" data-view="profile" id="top-avatar" aria-label="Open profile">S</button></div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="view active" id="view-home">
+          <div class="welcome-row"><div><div class="eyebrow" id="today-label">TUESDAY, NOVEMBER 17</div><h1 id="welcome-title">Good evening, Student <span>✦</span></h1><p>Ready to make today count? Here's your learning snapshot.</p></div><button class="btn btn-primary" data-action="add-task">＋ Add new task</button></div>
+          <div class="hero-grid">
+            <article class="hero-card"><div class="hero-copy"><span class="hero-tag">YOUR DAILY MOMENTUM</span><h2>Keep going.<br><em>You're doing great.</em></h2><p>Every focused minute is a step toward your goals.</p><button class="btn btn-white" data-action="focus-start">Start focus session <span>→</span></button></div><div class="hero-illustration"><div class="hero-sun"></div><div class="hero-book book-a"></div><div class="hero-book book-b"></div><div class="hero-pencil">✎</div><div class="hero-star star-a">✦</div><div class="hero-star star-b">✧</div></div></article>
+            <article class="streak-card"><div class="card-topline"><span class="soft-icon orange">♨</span><span class="muted-label">CURRENT STREAK</span><span class="streak-dots">•••</span></div><div class="streak-number"><b id="streak-number">0</b><span>days</span> <span class="flame">🔥</span></div><p>Consistency looks good on you.</p><div class="streak-week" id="streak-week"></div><div class="streak-foot"><span>Longest streak</span><b id="longest-streak">0 days</b></div></article>
+          </div>
+          <div class="stat-grid four-stats">
+            <article class="stat-card"><div class="stat-icon purple">◷</div><div><span>Study time today</span><strong id="today-hours">0h 0m</strong><small class="positive" id="study-change">Let's get started</small></div><div class="mini-sparkline">▁▃▂▅▄▆▇</div></article>
+            <article class="stat-card"><div class="stat-icon mint">✓</div><div><span>Tasks completed</span><strong id="today-completed">0/0</strong><small class="positive">Today's progress</small></div><div class="mini-ring" id="task-ring"><b>0%</b></div></article>
+            <article class="stat-card"><div class="stat-icon peach">♧</div><div><span>Upcoming events</span><strong id="upcoming-count">0</strong><small class="muted">Next 7 days</small></div><div class="stat-symbol">▣</div></article>
+            <article class="stat-card"><div class="stat-icon blue">✧</div><div><span>Daily goal</span><strong id="daily-goal-value">0%</strong><small class="muted" id="daily-goal-caption">Set your study goal</small></div><div class="goal-progress"><i id="daily-goal-bar"></i></div></article>
+          </div>
+          <div class="content-grid dashboard-grid">
+            <section class="panel today-panel"><div class="panel-heading"><div><h3>Today's plan</h3><p>Your day, one step at a time.</p></div><button class="text-link" data-view="timetable">View timetable →</button></div><div id="today-plan" class="timeline-list"></div><button class="add-inline" data-action="add-timetable">＋ Add a timetable activity</button></section>
+            <section class="panel tasks-panel"><div class="panel-heading"><div><h3>My tasks</h3><p>Keep your priorities close.</p></div><button class="text-link" data-view="tasks">View all →</button></div><div id="home-tasks" class="home-task-list"></div><button class="add-inline" data-action="add-task">＋ Add a task</button></section>
+          </div>
+          <div class="content-grid lower-grid">
+            <section class="panel week-panel"><div class="panel-heading"><div><h3>Your study week</h3><p>Study hours over the last 7 days.</p></div><button class="text-link" data-view="stats">Full report →</button></div><div id="home-week-chart" class="week-chart"></div></section>
+            <section class="panel quick-panel"><div class="panel-heading"><div><h3>Quick access</h3><p>Pick up where you left off.</p></div></div><div class="quick-grid"><button data-view="revision"><span class="quick-icon lilac">✧</span><b>Quick revision</b><small>Turn notes into a quiz</small></button><button data-view="english"><span class="quick-icon peach">Aa</span><b>English practice</b><small>Build your vocabulary</small></button><button data-view="maths"><span class="quick-icon mint">∑</span><b>Math practice</b><small>Sharpen your skills</small></button><button data-view="challenge"><span class="quick-icon gold">⚡</span><b>Daily challenge</b><small>Beat your best score</small></button></div></section>
+          </div>
+        </section>
+
+        <section class="view" id="view-timetable">
+          <div class="page-heading"><div><div class="eyebrow">PLAN YOUR DAY</div><h1>My timetable</h1><p>Build a rhythm that works for you.</p></div><button class="btn btn-primary" data-action="add-timetable">＋ Add activity</button></div>
+          <div class="panel timetable-panel"><div class="view-tabs" id="timetable-tabs"><button class="selected" data-period="today">Today</button><button data-period="week">This week</button><button data-period="month">This month</button></div><div id="timetable-content"></div></div>
+        </section>
+
+        <section class="view" id="view-tasks">
+          <div class="page-heading"><div><div class="eyebrow">STAY ON TRACK</div><h1>My tasks</h1><p>Little things done well make a big difference.</p></div><button class="btn btn-primary" data-action="add-task">＋ Add new task</button></div>
+          <div class="task-summary-grid" id="task-summary"></div>
+          <div class="panel"><div class="panel-heading task-filter-heading"><div><h3>Task list</h3><p>Organise your work and celebrate progress.</p></div><div class="filter-pills" id="task-filters"><button class="selected" data-filter="all">All</button><button data-filter="pending">Pending</button><button data-filter="completed">Completed</button></div></div><div id="task-list" class="task-list"></div></div>
+        </section>
+
+        <section class="view" id="view-calendar">
+          <div class="page-heading"><div><div class="eyebrow">DON'T MISS A THING</div><h1>Academic calendar</h1><p>Keep exams, deadlines and important days in one place.</p></div><button class="btn btn-primary" data-action="add-event">＋ Add event</button></div>
+          <div class="calendar-layout"><section class="panel calendar-panel"><div class="calendar-toolbar"><button class="round-btn" id="calendar-prev" aria-label="Previous calendar period">‹</button><h3 id="calendar-title">November 2026</h3><button class="round-btn" id="calendar-next" aria-label="Next calendar period">›</button><button class="text-link" id="calendar-today">Today</button></div><div class="view-tabs calendar-view-tabs" id="calendar-periods"><button data-calendar-period="day">Day</button><button data-calendar-period="week">Week</button><button class="selected" data-calendar-period="month">Month</button><button data-calendar-period="year">Year</button></div><div class="calendar-grid" id="calendar-grid"></div><div class="calendar-legend"><span><i class="dot purple-dot"></i>Exam</span><span><i class="dot blue-dot"></i>Assignment</span><span><i class="dot orange-dot"></i>Personal</span><span><i class="dot mint-dot"></i>Study</span></div></section><section class="panel calendar-events"><div class="panel-heading"><div><h3 id="selected-date-title">Selected day</h3><p>Events and reminders</p></div></div><div id="selected-date-events"></div></section></div>
+        </section>
+
+        <section class="view" id="view-stats">
+          <div class="page-heading"><div><div class="eyebrow">YOUR GROWTH, VISUALISED</div><h1>My progress</h1><p>Notice the effort. Learn from the patterns.</p></div><div class="filter-pills" id="stats-filters"><button class="selected" data-range="today">Today</button><button data-range="7">Past 7 days</button><button data-range="30">Last 30 days</button></div></div>
+          <div class="stat-grid four-stats stats-top-cards" id="stats-summary"></div>
+          <div class="analytics-grid"><section class="panel chart-panel"><div class="panel-heading"><div><h3>Study activity</h3><p>Minutes spent learning each day.</p></div></div><div id="stats-bar-chart" class="large-chart"></div></section><section class="panel chart-panel"><div class="panel-heading"><div><h3>Task completion</h3><p>How you're moving through your plan.</p></div></div><div id="task-donut-chart" class="donut-wrap"></div></section><section class="panel chart-panel"><div class="panel-heading"><div><h3>Study time by subject</h3><p>See where your focus goes.</p></div></div><div id="subject-chart" class="subject-chart"></div></section><section class="panel chart-panel"><div class="panel-heading"><div><h3>Daily goal consistency</h3><p>Your study days in this period.</p></div></div><div id="consistency-chart" class="consistency-grid"></div></section></div>
+        </section>
+
+        <section class="view" id="view-revision">
+          <div class="page-heading"><div><div class="eyebrow">LEARN IT. TEST IT. REMEMBER IT.</div><h1>Quick revision</h1><p>Turn your notes into a quick practice session.</p><p id="revision-ai-approval-status" class="ai-approval-warning" role="status" aria-live="polite">This AI provider is not currently available because its student-data privacy review is pending.</p></div><span class="ai-badge">✦ AI available after approval</span></div>
+          <div class="revision-grid"><section class="panel revision-input"><div class="panel-heading"><div><h3>Bring your study material</h3><p>Paste a paragraph or upload a photo of your notes.</p></div></div><label class="upload-zone" id="upload-zone"><input type="file" id="revision-file" accept="image/*,.txt,.md,.pdf" hidden><span class="upload-icon">↑</span><b>Drop a file here or <u>browse files</u></b><small>Image, TXT or PDF · Max 8 MB</small><span id="file-name" class="file-name"></span></label><label class="field-label">Or paste your topic / paragraph<textarea id="revision-text" rows="9" placeholder="Paste your textbook paragraph or notes here..."></textarea></label><div class="revision-controls"><label>Question type<select id="revision-type"><option value="mixed">Mixed quiz</option><option value="blank">Fill in the blanks</option><option value="tf">True or false</option><option value="short">Answer the following</option></select></label><label>Questions<select id="revision-count"><option>5</option><option selected>10</option><option>15</option></select></label></div><button class="btn btn-primary btn-full" id="generate-revision">✧ Generate revision set</button><p class="small-help">For image-based questions, connect a vision-capable AI provider in AI & dictionary. Text and TXT files can be used without an AI connection.</p></section><section class="panel revision-output"><div class="panel-heading"><div><h3>Your revision set</h3><p>Generated from your material.</p></div><span class="status-chip" id="revision-status" role="status" aria-live="polite">Ready when you are</span></div><div id="revision-result" class="revision-result empty-state" role="status" aria-live="polite"><div class="empty-graphic">✎</div><b>Your questions will appear here</b><p>Add some study material and generate your first revision set.</p></div></section></div>
+        </section>
+
+        <section class="view" id="view-english">
+          <div class="page-heading"><div><div class="eyebrow">WORDS OPEN DOORS</div><h1>English practice</h1><p>Grow your grammar, vocabulary and confidence.</p></div><span class="level-chip" id="english-level">Class level</span></div>
+          <div class="practice-layout"><section class="panel practice-card"><div class="practice-top"><span class="practice-icon english-icon">Aa</span><span class="status-chip">Personalised practice</span></div><h2>Ready for a quick English round?</h2><p>Choose a topic or let StudyFlow surprise you with a question matched to your class.</p><div class="topic-chips" id="english-topics"><button class="selected" data-topic="mixed">Mixed</button><button data-topic="synonyms">Synonyms</button><button data-topic="antonyms">Antonyms</button><button data-topic="meaning">Meanings</button><button data-topic="grammar">Grammar</button><button data-topic="tenses">Tenses</button></div><button class="btn btn-primary" id="start-english">Start practice →</button><div id="english-quiz" class="quiz-area hidden"></div></section><section class="panel practice-side"><h3>Your English progress</h3><div id="english-stats" class="practice-metrics"></div><div class="side-quote"><span>✦</span><p>“One new word a day adds up to a world of confidence.”</p></div></section></div>
+        </section>
+
+        <section class="view" id="view-maths">
+          <div class="page-heading"><div><div class="eyebrow">THINK. SOLVE. IMPROVE.</div><h1>Math practice</h1><p>Build your problem-solving skills, one question at a time.</p></div><span class="level-chip" id="math-level">Class level</span></div>
+          <div class="practice-layout"><section class="panel practice-card"><div class="practice-top"><span class="practice-icon math-icon">∑</span><span class="status-chip">Curriculum-aware</span></div><h2>Let's solve something.</h2><p>Questions are adapted to your class level. Choose a topic or practise a mixed set.</p><div class="topic-chips" id="math-topics"><button class="selected" data-topic="mixed">Mixed</button><button data-topic="arithmetic">Arithmetic</button><button data-topic="algebra">Algebra</button><button data-topic="geometry">Geometry</button><button data-topic="statistics">Statistics</button></div><button class="btn btn-primary" id="start-maths">Start practice →</button><div id="math-quiz" class="quiz-area hidden"></div></section><section class="panel practice-side"><h3>Your maths progress</h3><div id="math-stats" class="practice-metrics"></div><div class="side-quote math-quote"><span>✦</span><p>“Mistakes are part of the method. Keep trying.”</p></div></section></div>
+        </section>
+
+        <section class="view" id="view-challenge">
+          <div class="page-heading"><div><div class="eyebrow">A TWO-MINUTE BRAIN BOOST</div><h1>Daily vocabulary challenge</h1><p>Challenge yourself, grow your word power and climb the board.</p></div><span class="level-chip" id="challenge-level">Your group</span></div>
+          <div class="challenge-hero"><div><span class="hero-tag">TODAY'S WORD SPRINT</span><h2>2 minutes.<br><em>How many can you get?</em></h2><p>Every correct answer earns +1 point. No negative marking.</p><div class="challenge-meta"><span>⏱ 02:00 timer</span><span>✦ +1 per correct answer</span><span>♛ Class-group leaderboard</span></div></div><div class="challenge-graphic"><div class="timer-orbit">02:00</div><span class="orbit-word word-one">WORDS</span><span class="orbit-word word-two">LEARN</span><span class="orbit-word word-three">GROW</span></div></div>
+          <div id="challenge-start-panel" class="panel challenge-start"><div><h3>Ready for today's challenge?</h3><p id="challenge-intro">Your questions are selected for your class group.</p></div><button class="btn btn-primary" id="begin-challenge">Start 2-minute challenge →</button></div>
+          <div id="challenge-quiz" class="panel challenge-quiz hidden"></div>
+          <div id="challenge-result" class="panel challenge-result hidden" role="status" aria-live="polite"></div>
+          <div class="challenge-bottom"><section class="panel"><div class="panel-heading"><div><h3>Your challenge stats</h3><p>Official attempts only.</p></div></div><div id="challenge-stats" class="practice-metrics"></div></section><section class="panel"><div class="panel-heading"><div><h3>Leaderboard preview</h3><p>See who's on a roll.</p></div><button class="text-link" data-view="leaderboard">View all →</button></div><div id="leaderboard-preview"></div></section></div>
+        </section>
+
+        <section class="view" id="view-leaderboard">
+          <div class="page-heading"><div><div class="eyebrow">LEARN TOGETHER. RISE TOGETHER.</div><h1>Leaderboard</h1><p>Celebrate effort and friendly competition.</p></div><span class="level-chip" id="leaderboard-group">Your class group</span></div>
+          <div class="panel leaderboard-panel"><div class="leaderboard-toolbar"><div class="view-tabs" id="leaderboard-period"><button class="selected" data-period="daily">Daily</button><button data-period="weekly">Weekly</button><button data-period="monthly">Monthly</button></div><select id="leaderboard-band"><option value="all">All groups</option><option value="7-8">Class 7–8</option><option value="9-10">Class 9–10</option><option value="11-12">Class 11–12</option></select></div><div class="podium" id="leaderboard-podium"></div><div class="leaderboard-table-wrap"><table class="leaderboard-table"><thead><tr><th>Rank</th><th>Student</th><th>Group</th><th>Correct</th><th>Points</th></tr></thead><tbody id="leaderboard-table"></tbody></table></div><p class="small-help">Only official daily challenge attempts count. Public display uses usernames, not email addresses.</p></div>
+        </section>
+
+        <section class="view" id="view-assistant">
+          <div class="page-heading"><div><div class="eyebrow">YOUR LEARNING COPILOT</div><h1>AI & dictionary</h1><p>Choose an AI provider and get help with words, topics and study questions.</p></div><span class="ai-badge">✦ Your AI, your choice</span></div>
+          <div class="ai-layout"><section class="panel ai-connect-panel"><div class="panel-heading"><div><h3>Connect an AI provider</h3><p>Provider and model configuration remains available for review. The API key stays in browser memory and is sent only for a connection test or approved request. No student prompt, image, document, personal information or study record is sent to a provider unless the content review is complete.</p></div><span class="status-chip" id="ai-connection-status">Not tested</span></div><p class="ai-approval-warning" id="ai-provider-approval-status" role="status" aria-live="polite">This AI provider is not currently available because its student-data privacy review is pending.</p><div class="provider-grid" id="provider-grid"></div>          <div class="ai-config"><div class="two-fields"><label>Model<input id="ai-model" placeholder="Provider model name"></label><label>API key<div class="password-wrap"><input id="ai-key" type="password" autocomplete="off" placeholder="Paste your API key"><button type="button" class="password-toggle" aria-label="Show API key" title="Show API key"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-5 9.5-5 9.5 5 9.5 5-3.5 5-9.5 5-9.5-5-9.5-5Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg></button></div></label></div><label id="endpoint-wrap" class="hidden">Custom endpoint<input id="ai-endpoint" placeholder="https://..."><small>Required only for Azure OpenAI. Meta Llama uses a fixed Fireworks endpoint.</small></label><div class="ai-config-actions"><button class="btn btn-primary" id="save-ai-provider">Use this provider</button><button class="btn btn-outline" id="test-ai-provider">Test connection</button><button class="text-link" id="disconnect-ai">Disconnect</button></div><p class="small-help">Connection tests send only a fixed non-student prompt and the selected API key; they reject student content. Student-data requests remain blocked until text, image, and document approvals are verified.</p></div></section>
+          <section class="panel dictionary-panel"><div class="panel-heading"><div><h3>Word meaning</h3><p>Understand a word and learn how to use it.</p></div><div class="dictionary-ai-provider" id="dictionary-provider-mark" title="Selected AI provider"><span>OpenAI</span></div></div><div class="dictionary-search"><input id="dictionary-word" placeholder="Enter an English word..."><button class="btn btn-primary" id="lookup-word">Explain word</button></div><div id="dictionary-result" class="dictionary-result empty-state"><div class="empty-graphic">Aa</div><b>Your word card will appear here</b><p>Look up meanings, synonyms, antonyms and examples.</p></div><div class="saved-words"><div class="panel-heading"><h3>Saved words</h3></div><div id="saved-words-list" class="saved-word-list"></div></div></section></div>
+        </section>
+
+        <section class="view" id="view-profile">
+          <div class="page-heading"><div><div class="eyebrow">THIS IS YOUR SPACE</div><h1>My profile</h1><p>Your learning journey, all in one place.</p></div><div class="profile-heading-actions"><button class="btn btn-outline" data-view="home">← Back to overview</button><button class="btn btn-outline" data-view="settings">⚙ Settings</button></div></div>
+          <div class="profile-layout"><section class="panel profile-card"><div class="profile-cover"></div><div class="profile-main"><div class="profile-avatar" id="profile-avatar">S</div><div><h2 id="profile-name">Student</h2><p id="profile-username">@student</p><span class="status-chip" id="profile-class">Class 11 · Board</span></div></div><div class="profile-metrics" id="profile-metrics"></div></section><section class="panel profile-details"><div class="panel-heading"><div><h3>Personal information</h3><p>Keep your student details up to date.</p></div></div><form id="profile-form" class="stack-form"><label>Full name<input name="name" required></label><label>Username<input name="username" disabled></label><label>Email address<input name="email" disabled></label><label>Class<select name="standard"><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></label><label>Board<select name="board"><option>CBSE</option><option>ICSE</option><option>Maharashtra State Board</option><option>Other State Board</option><option>Other</option></select></label><label>School / college (optional)<input name="school"></label><label>Time zone<select name="timezone"><option>Asia/Kolkata</option><option>Asia/Dubai</option><option>UTC</option><option>Europe/London</option><option>America/New_York</option></select></label><button class="btn btn-primary" type="submit">Save changes</button></form></section></div>
+        </section>
+
+        <section class="view" id="view-settings">
+          <div class="page-heading"><div><div class="eyebrow">MAKE IT YOURS</div><h1>Settings</h1><p>Control your preferences and your StudyFlow experience.</p></div></div>
+          <div class="settings-grid"><section class="panel"><h3>Daily study goal</h3><p class="muted">Set a realistic daily target for focused study time.</p><form id="goal-form" class="inline-form"><label>Daily goal (minutes)<input type="number" name="minutes" min="15" max="720" step="15" value="120"></label><button class="btn btn-primary">Save goal</button></form></section><section class="panel"><h3>Browser notifications</h3><p class="muted">Allow browser notifications for reminders (when supported).</p><button class="btn btn-outline" id="enable-notifications">Enable notifications</button><p class="small-help" id="notification-status">Notifications are currently off.</p></section><section class="panel"><h3>Your data</h3><p class="muted">Export your profile, study records, challenge history, notifications, preferences and recorded consent. Passwords and session tokens are excluded.</p><button class="btn btn-outline" id="export-account-btn">Download my data</button><hr><p class="muted">Remove saved study records or challenge history without deleting your account.</p><button class="btn btn-outline" id="delete-study-records-btn">Delete study records</button><button class="btn btn-outline" id="delete-challenge-history-btn">Delete challenge history</button></section><section class="panel"><h3>Core data use</h3><p class="muted">StudyFlow uses the account and study information you provide to operate your account and the features you request. See the <a href="/privacy.html" target="_blank" rel="noopener">Privacy notice</a>.</p><p class="small-help" id="privacy-consent-status" role="status" aria-live="polite">Checking consent record…</p><button class="btn btn-outline" id="accept-privacy-consent-btn">Agree to core data use</button><p class="small-help">Withdrawing this necessary core-service consent requires deleting your account; deletion removes the consent record from the active database.</p></section><section class="panel"><h3>AI data processing</h3><p class="muted" id="ai-privacy-status">Checking AI provider approval…</p><p class="small-help">No per-user AI consent is collected while provider terms, processing regions and retention remain unverified. Provider connection tests use a fixed, non-student prompt.</p><button class="btn btn-outline" id="clear-ai-preferences-btn">Clear saved AI provider preferences</button></section><section class="panel danger-panel"><h3>Account</h3><p class="muted">Sign out on this device or permanently delete your account and its profile, sessions, study records, challenge history, notifications and preferences.</p><button class="btn btn-outline" id="logout-btn">Sign out</button><button class="btn btn-outline" id="delete-account-btn">Delete account</button></section><section class="panel"><h3>About this build</h3><p class="muted">StudyFlow MVP · Local deployment</p><p class="small-help">Core scheduling, tasks, calendar, practice, progress and leaderboard features are working. AI provider requests require your own API key.</p></section></div>
+        </section>
+      </div>
+      <footer class="app-footer"><span>✦ StudyFlow</span><span>Make progress, one day at a time.</span><nav aria-label="Legal information"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/cookies.html">Cookies</a></nav></footer>
+    </main>
+    <nav class="mobile-nav"><button class="active" data-view="home"><span>⌂</span>Home</button><button data-view="stats"><span>▥</span>Stats</button><button data-view="tasks"><span>☑</span>Tasks</button><button data-view="profile"><span>◉</span>Profile</button></nav>
+  </div>
+
+  <div class="notification-overlay" id="notification-overlay" aria-hidden="true"></div>
+  <aside class="notification-drawer" id="notifications-drawer" role="dialog" aria-modal="true" aria-labelledby="notification-title" aria-describedby="notification-description" aria-hidden="true" inert>
+    <header class="notification-header">
+      <div>
+        <span class="eyebrow">YOUR STUDY SPACE</span>
+        <h2 id="notification-title">Notifications <span class="notification-header-count" id="notification-header-count">0 unread</span></h2>
+        <p id="notification-description">Updates about your StudyFlow activity.</p>
+      </div>
+      <button class="icon-btn notification-close" id="notification-close" type="button" aria-label="Close notifications">×</button>
+    </header>
+    <div class="notification-live-status sr-only" id="notification-live-status" role="status" aria-live="polite"></div>
+    <nav class="notification-filters" id="notification-filters" role="tablist" aria-label="Filter notifications">
+      <button type="button" role="tab" aria-controls="notification-list" aria-selected="true" class="selected" data-notification-filter="all">All</button>
+      <button type="button" role="tab" aria-controls="notification-list" aria-selected="false" data-notification-filter="unread">Unread</button>
+      <button type="button" role="tab" aria-controls="notification-list" aria-selected="false" data-notification-filter="important">Important</button>
+      <button type="button" role="tab" aria-controls="notification-list" aria-selected="false" data-notification-filter="system">System</button>
+      <button type="button" role="tab" aria-controls="notification-list" aria-selected="false" data-notification-filter="study_reminders">Study reminders</button>
+      <button type="button" role="tab" aria-controls="notification-list" aria-selected="false" data-notification-filter="challenges">Challenges</button>
+    </nav>
+    <div class="notification-toolbar">
+      <button type="button" class="text-link" id="notification-mark-all">Mark all as read</button>
+      <button type="button" class="text-link notification-clear" id="notification-clear-all">Clear all</button>
+    </div>
+    <section class="notification-list" id="notification-list" role="tabpanel" aria-label="Notifications" tabindex="0">
+      <div class="notification-loading" role="status">Loading notifications…</div>
+    </section>
+    <details class="notification-preferences">
+      <summary>Notification preferences</summary>
+      <p>Choose which kinds of updates StudyFlow can save for you.</p>
+      <form id="notification-preferences-form">
+        <label><input type="checkbox" name="study_reminders"> Study reminders</label>
+        <label><input type="checkbox" name="daily_goals"> Daily study goals</label>
+        <label><input type="checkbox" name="challenge_updates"> Challenge updates</label>
+        <label><input type="checkbox" name="achievement_notifications"> Achievements</label>
+        <label><input type="checkbox" name="system_announcements"> System announcements</label>
+        <button type="submit" class="btn btn-primary btn-full">Save preferences</button>
+      </form>
+    </details>
+  </aside>
+
+  <div class="modal-backdrop hidden" id="modal-backdrop"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1"><div class="modal-heading"><div><span class="eyebrow">STUDYFLOW</span><h2 id="modal-title">Add task</h2></div><button class="icon-btn" id="modal-close" aria-label="Close">×</button></div><form id="modal-form"><div id="modal-fields"></div><div class="modal-actions"><button type="button" class="btn btn-outline" id="modal-cancel">Cancel</button><button type="submit" class="btn btn-primary" id="modal-submit">Save</button></div></form></div></div>
+  <dialog id="delete-account-dialog" aria-labelledby="delete-account-title">
+    <form id="delete-account-form">
+      <h2 id="delete-account-title">Delete your account?</h2>
+      <p>This permanently deletes your account, profile, study records, sessions and challenge history. This cannot be undone.</p>
+      <label for="delete-account-password">Current password</label>
+      <input id="delete-account-password" name="password" type="password" autocomplete="current-password" required maxlength="128">
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="delete-account-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Permanently delete</button>
+      </div>
+    </form>
+  </dialog>
+  <script src="/app.js"></script>
+</body>
+</html>
