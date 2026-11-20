@@ -8,3 +8,4 @@
 - `uploads/`: runtime-generated or local uploaded files.
 - `logs/`, `*.log`: runtime diagnostics.
 - IDE and operating-system junk: editor settings, `.DS_Store`, and `Thumbs.db`.
+- `docs/MEMORY.md` and `docs/RULES.md`: internal AI handoff and coding-agent instructions, not evaluator documentation.

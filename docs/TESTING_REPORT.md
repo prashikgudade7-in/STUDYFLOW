@@ -2,7 +2,7 @@
 
 ## Environment
 
-- Submission location: `C:\Users\sguda\Downloads\STUDYFLOW_GITHUB_SUBMISSION`
+- Submission location: local independent submission copy
 - Runtime: Node.js 20+
 - Database: temporary SQLite databases for tests
 
