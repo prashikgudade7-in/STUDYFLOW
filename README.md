@@ -167,8 +167,6 @@ Follow [Prototype Demonstration Guide](docs/PROTOTYPE_DEMO_GUIDE.md).
 
 ## Contributors
 
-This submission contains the StudyFlow project team implementation; contributor names should be added before publication if final names are available.
-
-## Acknowledgements
+PRASHIK GUDADE
 
 StudyFlow uses Node.js, Express, better-sqlite3, pdf-parse, and open-source frontend assets as documented in the project files.
